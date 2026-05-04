@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arusha Liquor Express | Alcohol Delivery in Arusha</title>
+  <meta name="description" content="Arusha Liquor Express catalogue for whisky, beer, wine and local spirits. Order via WhatsApp. Delivery inside Arusha only. ID required." />
+  <meta name="theme-color" content="#111111" />
+
+  <style>
+    :root {
+      --bg: #101010;
+      --bg-soft: #171717;
+      --card: #ffffff;
+      --text: #222222;
+      --text-light: #f8f3e8;
+      --muted: #6f6a61;
+      --muted-light: #d8cfc0;
+      --gold: #d6a84f;
+      --gold-dark: #a87824;
+      --green: #25d366;
+      --green-dark: #1ead55;
+      --danger: #ffcc66;
+      --border: rgba(255,255,255,.14);
+      --shadow: 0 18px 50px rgba(0,0,0,.18);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      background: #f8f5f0;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    body.locked { overflow: hidden; }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(16,16,16,.92);
+      backdrop-filter: blur(14px);
+      color: var(--text-light);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: .3px;
+      font-size: 21px;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold), #fff0a8);
+      display: grid;
+      place-items: center;
+      color: #17110a;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--muted-light);
+      font-size: 14px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      padding: 4px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      gap: 4px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .lang-switch button {
+      border: 0;
+      cursor: pointer;
+      color: var(--muted-light);
+      background: transparent;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .lang-switch button.active {
+      background: var(--gold);
+      color: #17110a;
+    }
+
+    .hero {
+      min-height: 680px;
+      color: var(--text-light);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(214,168,79,.22), transparent 30%),
+        linear-gradient(120deg, rgba(0,0,0,.9), rgba(0,0,0,.58)),
+        url("https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=1800&q=80");
+      background-position: center;
+      background-size: cover;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 80px 18px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      background: rgba(214,168,79,.12);
+      border: 1px solid rgba(214,168,79,.36);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: .98;
+      margin: 0 0 18px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      color: var(--muted-light);
+      font-size: 19px;
+      max-width: 680px;
+      margin: 0 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 21px;
+      border-radius: 999px;
+      font-weight: 900;
+      transition: transform .18s ease, filter .18s ease, background .18s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-whatsapp { background: var(--green); color: #062312; }
+    .btn-whatsapp:hover { background: var(--green-dark); }
+    .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+
+    .hero-panel {
+      background: rgba(16,16,16,.76);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel h3 { color: var(--gold); margin: 0 0 12px; }
+    .hero-panel ul { margin: 0; padding-left: 20px; color: var(--muted-light); }
+    .hero-panel li { margin: 7px 0; }
+
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 70px 18px;
+    }
+
+    .notice {
+      margin-top: -38px;
+      position: relative;
+      z-index: 5;
+      background: #191919;
+      color: var(--danger);
+      border: 1px solid rgba(255,204,102,.35);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      font-weight: 900;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      color: #251c12;
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -1px;
+      margin: 0 0 6px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .filter {
+      border: 1px solid rgba(0,0,0,.12);
+      background: #fff;
+      color: #332820;
+      border-radius: 999px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .filter.active {
+      background: #251c12;
+      color: var(--gold);
+      border-color: #251c12;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,.10);
+      border: 1px solid rgba(0,0,0,.07);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #ddd;
+    }
+
+    .product-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+    }
+
+    .product h3 {
+      margin: 8px 0 6px;
+      font-size: 21px;
+      line-height: 1.2;
+    }
+
+    .product p {
+      color: var(--muted);
+      margin: 0 0 14px;
+      flex: 1;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0 15px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 950;
+      color: #20170e;
+    }
+
+    .stock {
+      font-size: 12px;
+      font-weight: 900;
+      color: #196d39;
+      background: rgba(37,211,102,.12);
+      border-radius: 999px;
+      padding: 5px 9px;
+      white-space: nowrap;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .info-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.08);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    .info-card h3 {
+      color: #251c12;
+      margin: 0 0 8px;
+    }
+
+    .info-card p, .info-card li {
+      color: var(--muted);
+    }
+
+    .rules {
+      background: #151515;
+      color: var(--text-light);
+      border-radius: var(--radius);
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .rules h2 { color: var(--gold); }
+    .rules p, .rules li { color: var(--muted-light); }
+
+    footer {
+      background: #0d0d0d;
+      color: var(--muted-light);
+      text-align: center;
+      padding: 42px 18px 95px;
+    }
+
+    footer strong { color: var(--gold); }
+
+    .floating-whatsapp {
+      position: fixed;
+      z-index: 60;
+      right: 18px;
+      bottom: 18px;
+      background: var(--green);
+      color: #062312;
+      padding: 15px 20px;
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.32);
+      font-weight: 950;
+    }
+
+    .age-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .age-box {
+      width: min(460px, 100%);
+      background: #fff;
+      color: #252525;
+      border-radius: 28px;
+      padding: 34px;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(0,0,0,.38);
+    }
+
+    .age-box h2 { margin-top: 0; }
+    .age-actions { display: grid; gap: 10px; margin-top: 20px; }
+    .btn-age { background: #251c12; color: var(--gold); }
+    .btn-exit { background: #eee; color: #333; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .info-grid { grid-template-columns: 1fr; }
+      .nav-links a { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      body { padding-bottom: 78px; }
+      .nav { padding: 12px 14px; }
+      .brand { font-size: 18px; }
+      .hero { min-height: auto; }
+      .hero-inner { padding: 56px 14px 70px; }
+      h1 { font-size: 42px; letter-spacing: -1px; }
+      .hero p { font-size: 16px; }
+      .hero-actions, .btn { width: 100%; }
+      .hero-panel { padding: 20px; }
+      .section { padding: 44px 14px; }
+      .notice { margin-top: -28px; border-radius: 18px; font-size: 14px; }
+      .section-head { display: block; }
+      .filters { display: grid; grid-template-columns: repeat(2, 1fr); }
+      .filter { padding: 12px 10px; }
+      .products { grid-template-columns: 1fr; }
+      .product img { height: 185px; }
+      .rules { padding: 22px; }
+      .floating-whatsapp {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        text-align: center;
+        border-radius: 16px;
+        padding: 16px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body class="locked">
+  <div id="ageGate" class="age-gate">
+    <div class="age-box">
+      <h2 data-i18n="ageTitle">Age Verification</h2>
+      <p data-i18n="ageText">You must be 18 years or older to enter this website.</p>
+      <div class="age-actions">
+        <button class="btn btn-age" onclick="enterSite()" data-i18n="ageYes">I am 18 or older</button>
+        <button class="btn btn-exit" onclick="leaveSite()" data-i18n="ageNo">I am under 18</button>
+      </div>
+      <small data-i18n="ageSmall">Please drink responsibly. ID will be checked on delivery.</small>
+    </div>
+  </div>
+
+  <div class="topbar">
+    <nav class="nav">
+      <a class="brand" href="#">
+        <span class="brand-mark">A</span>
+        <span>Arusha Liquor Express</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#products" data-i18n="navProducts">Products</a>
+        <a href="#delivery" data-i18n="navDelivery">Delivery</a>
+        <a href="#payments" data-i18n="navPayments">Payments</a>
+        <a href="#rules" data-i18n="navRules">Rules</a>
+        <div class="lang-switch" aria-label="Language switch">
+          <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+          <button id="btn-sw" onclick="setLang('sw')">SW</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow" data-i18n="eyebrow">Arusha only · WhatsApp orders · ID required</div>
+        <h1 data-i18n="heroTitle">Fast Liquor Delivery in Arusha</h1>
+        <p data-i18n="heroText">Browse whisky, beer, wine and local spirits. Order by WhatsApp, confirm availability, then pay by cash or mobile money.</p>
+        <div class="hero-actions">
+          <a id="heroWhatsApp" class="btn btn-whatsapp" href="#" target="_blank" rel="noopener" data-i18n="orderWhatsApp">Order via WhatsApp</a>
+          <a class="btn btn-outline" href="#products" data-i18n="viewProducts">View Products</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <h3 data-i18n="simpleTitle">Simple, safe launch model</h3>
+        <ul>
+          <li data-i18n="simple1">Catalogue first — no online checkout yet.</li>
+          <li data-i18n="simple2">WhatsApp confirmation before delivery.</li>
+          <li data-i18n="simple3">Cash, M-Pesa, Tigo Pesa or Airtel Money.</li>
+          <li data-i18n="simple4">Delivery inside Arusha only.</li>
+          <li data-i18n="simple5">ID checked before handover.</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="notice" data-i18n="notice">
+        Alcohol sales are restricted. Customers must be legally permitted to buy alcohol. ID will be checked before handover.
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="productsTitle">Product Catalogue</h2>
+          <p data-i18n="productsText">Sample product list with practical launch pricing. Replace prices with real stock prices before publishing.</p>
+        </div>
+      </div>
+
+      <div class="filters">
+        <button class="filter active" data-filter="all" onclick="filterProducts('all')" data-i18n="filterAll">All</button>
+        <button class="filter" data-filter="whisky" onclick="filterProducts('whisky')" data-i18n="filterWhisky">Whisky</button>
+        <button class="filter" data-filter="beer" onclick="filterProducts('beer')" data-i18n="filterBeer">Beer</button>
+        <button class="filter" data-filter="wine" onclick="filterProducts('wine')" data-i18n="filterWine">Wine</button>
+        <button class="filter" data-filter="spirits" onclick="filterProducts('spirits')" data-i18n="filterSpirits">Local Spirits</button>
+      </div>
+
+      <div id="productGrid" class="products"></div>
+    </section>
+
+    <section id="delivery" class="section">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="deliveryTitle">Delivery in Arusha</h2>
+          <p data-i18n="deliveryText">Start with a controlled delivery area. Expand only after demand and operations are stable.</p>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3 data-i18n="deliveryAreaTitle">Delivery area</h3>
+          <p data-i18n="deliveryAreaText">Arusha town and approved nearby areas only.</p>
+        </div>
+        <div class="info-card">
+          <h3 data-i18n="idTitle">ID check</h3>
+          <p data-i18n="idText">The customer must show valid ID before alcohol is handed over.</p>
+        </div>
+        <div class="info-card">
+          <h3 data-i18n="refusalTitle">Right to refuse</h3>
+          <p data-i18n="refusalText">No delivery to minors, schools, restricted places, or intoxicated persons.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="payments" class="section">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="paymentTitle">Payment Methods</h2>
+          <p data-i18n="paymentText">Keep payment simple for launch. Confirm all orders manually on WhatsApp.</p>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card"><h3>Cash on Delivery</h3><p data-i18n="cashText">Pay after ID verification and order handover.</p></div>
+        <div class="info-card"><h3>M-Pesa</h3><p data-i18n="mobileText">Mobile money details are sent after order confirmation.</p></div>
+        <div class="info-card"><h3>Tigo Pesa / Airtel Money</h3><p data-i18n="mobileText2">Available when confirmed by the seller.</p></div>
+      </div>
+    </section>
+
+    <section id="rules" class="section">
+      <div class="rules">
+        <h2 data-i18n="rulesTitle">Responsible Sales Rules</h2>
+        <p data-i18n="rulesIntro">These rules should stay visible on the site.</p>
+        <ul>
+          <li data-i18n="rule1">Alcohol is sold only to customers legally permitted to buy alcohol.</li>
+          <li data-i18n="rule2">Valid ID is required at delivery.</li>
+          <li data-i18n="rule3">Orders may be refused if the customer appears intoxicated.</li>
+          <li data-i18n="rule4">No delivery to schools, colleges, minors, or restricted locations.</li>
+          <li data-i18n="rule5">Prices and availability must be confirmed by WhatsApp before delivery.</li>
+          <li data-i18n="rule6">The business must operate with all required Tanzanian and local Arusha licences.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <a id="floatWhatsApp" class="floating-whatsapp" href="#" target="_blank" rel="noopener" data-i18n="floatingOrder">WhatsApp Order</a>
+
+  <footer>
+    <p><strong>Arusha Liquor Express</strong></p>
+    <p data-i18n="footerText">Arusha, Tanzania · Delivery inside Arusha only · Responsible drinking</p>
+    <p><a id="footerWhatsApp" href="#" target="_blank" rel="noopener" style="color:#25d366;">WhatsApp: +255 710 340 580</a></p>
+    <small>© 2026 Arusha Liquor Express</small>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = "255710340580";
+
+    const translations = {
+      en: {
+        ageTitle: "Age Verification",
+        ageText: "You must be 18 years or older to enter this website.",
+        ageYes: "I am 18 or older",
+        ageNo: "I am under 18",
+        ageSmall: "Please drink responsibly. ID will be checked on delivery.",
+        navProducts: "Products",
+        navDelivery: "Delivery",
+        navPayments: "Payments",
+        navRules: "Rules",
+        eyebrow: "Arusha only · WhatsApp orders · ID required",
+        heroTitle: "Fast Liquor Delivery in Arusha",
+        heroText: "Browse whisky, beer, wine and local spirits. Order by WhatsApp, confirm availability, then pay by cash or mobile money.",
+        orderWhatsApp: "Order via WhatsApp",
+        viewProducts: "View Products",
+        simpleTitle: "Simple, safe launch model",
+        simple1: "Catalogue first — no online checkout yet.",
+        simple2: "WhatsApp confirmation before delivery.",
+        simple3: "Cash, M-Pesa, Tigo Pesa or Airtel Money.",
+        simple4: "Delivery inside Arusha only.",
+        simple5: "ID checked before handover.",
+        notice: "Alcohol sales are restricted. Customers must be legally permitted to buy alcohol. ID will be checked before handover.",
+        productsTitle: "Product Catalogue",
+        productsText: "Sample product list with practical launch pricing. Replace prices with real stock prices before publishing.",
+        filterAll: "All",
+        filterWhisky: "Whisky",
+        filterBeer: "Beer",
+        filterWine: "Wine",
+        filterSpirits: "Local Spirits",
+        deliveryTitle: "Delivery in Arusha",
+        deliveryText: "Start with a controlled delivery area. Expand only after demand and operations are stable.",
+        deliveryAreaTitle: "Delivery area",
+        deliveryAreaText: "Arusha town and approved nearby areas only.",
+        idTitle: "ID check",
+        idText: "The customer must show valid ID before alcohol is handed over.",
+        refusalTitle: "Right to refuse",
+        refusalText: "No delivery to minors, schools, restricted places, or intoxicated persons.",
+        paymentTitle: "Payment Methods",
+        paymentText: "Keep payment simple for launch. Confirm all orders manually on WhatsApp.",
+        cashText: "Pay after ID verification and order handover.",
+        mobileText: "Mobile money details are sent after order confirmation.",
+        mobileText2: "Available when confirmed by the seller.",
+        rulesTitle: "Responsible Sales Rules",
+        rulesIntro: "These rules should stay visible on the site.",
+        rule1: "Alcohol is sold only to customers legally permitted to buy alcohol.",
+        rule2: "Valid ID is required at delivery.",
+        rule3: "Orders may be refused if the customer appears intoxicated.",
+        rule4: "No delivery to schools, colleges, minors, or restricted locations.",
+        rule5: "Prices and availability must be confirmed by WhatsApp before delivery.",
+        rule6: "The business must operate with all required Tanzanian and local Arusha licences.",
+        floatingOrder: "WhatsApp Order",
+        footerText: "Arusha, Tanzania · Delivery inside Arusha only · Responsible drinking",
+        productOrder: "Order",
+        inStock: "Available"
+      },
+      sw: {
+        ageTitle: "Uthibitisho wa Umri",
+        ageText: "Lazima uwe na miaka 18 au zaidi kuingia kwenye tovuti hii.",
+        ageYes: "Nina miaka 18 au zaidi",
+        ageNo: "Niko chini ya miaka 18",
+        ageSmall: "Kunywa kwa uwajibikaji. Kitambulisho kitakaguliwa wakati wa delivery.",
+        navProducts: "Bidhaa",
+        navDelivery: "Delivery",
+        navPayments: "Malipo",
+        navRules: "Sheria",
+        eyebrow: "Arusha tu · Oda kwa WhatsApp · Kitambulisho kinahitajika",
+        heroTitle: "Delivery ya Pombe kwa Haraka Arusha",
+        heroText: "Angalia whisky, bia, wine na spirits za ndani. Agiza kwa WhatsApp, thibitisha upatikanaji, kisha lipa cash au mobile money.",
+        orderWhatsApp: "Agiza kwa WhatsApp",
+        viewProducts: "Angalia Bidhaa",
+        simpleTitle: "Mfumo rahisi na salama wa kuanza",
+        simple1: "Katalogi kwanza — hakuna online checkout kwa sasa.",
+        simple2: "Uthibitisho wa WhatsApp kabla ya delivery.",
+        simple3: "Cash, M-Pesa, Tigo Pesa au Airtel Money.",
+        simple4: "Delivery ndani ya Arusha tu.",
+        simple5: "Kitambulisho kinakaguliwa kabla ya kukabidhi bidhaa.",
+        notice: "Uuzaji wa pombe una masharti. Mteja lazima aruhusiwe kisheria kununua pombe. Kitambulisho kitakaguliwa kabla ya kukabidhiwa.",
+        productsTitle: "Katalogi ya Bidhaa",
+        productsText: "Orodha ya mfano yenye bei za kuanzia. Badilisha bei kulingana na stock halisi kabla ya kuchapisha.",
+        filterAll: "Zote",
+        filterWhisky: "Whisky",
+        filterBeer: "Bia",
+        filterWine: "Wine",
+        filterSpirits: "Spirits za Ndani",
+        deliveryTitle: "Delivery Arusha",
+        deliveryText: "Anza na eneo dogo la delivery. Panua baada ya mahitaji na uendeshaji kuwa imara.",
+        deliveryAreaTitle: "Eneo la delivery",
+        deliveryAreaText: "Mji wa Arusha na maeneo ya karibu yaliyoidhinishwa tu.",
+        idTitle: "Ukaguzi wa kitambulisho",
+        idText: "Mteja lazima aonyeshe kitambulisho halali kabla ya kukabidhiwa pombe.",
+        refusalTitle: "Haki ya kukataa",
+        refusalText: "Hakuna delivery kwa watoto, shule, maeneo yaliyokatazwa au watu waliolewa.",
+        paymentTitle: "Njia za Malipo",
+        paymentText: "Malipo yawe rahisi wakati wa kuanza. Thibitisha oda zote kwa WhatsApp.",
+        cashText: "Lipa baada ya ukaguzi wa kitambulisho na makabidhiano.",
+        mobileText: "Maelezo ya mobile money hutumwa baada ya kuthibitisha oda.",
+        mobileText2: "Inapatikana baada ya kuthibitishwa na muuzaji.",
+        rulesTitle: "Sheria za Uuzaji kwa Uwajibikaji",
+        rulesIntro: "Sheria hizi zibaki wazi kwenye tovuti.",
+        rule1: "Pombe huuzwa tu kwa wateja wanaoruhusiwa kisheria kununua pombe.",
+        rule2: "Kitambulisho halali kinahitajika wakati wa delivery.",
+        rule3: "Oda inaweza kukataliwa kama mteja anaonekana amelewa.",
+        rule4: "Hakuna delivery kwa shule, vyuo, watoto au maeneo yaliyokatazwa.",
+        rule5: "Bei na upatikanaji lazima vithibitishwe kwa WhatsApp kabla ya delivery.",
+        rule6: "Biashara lazima iwe na leseni zote zinazohitajika Tanzania na Arusha.",
+        floatingOrder: "Agiza WhatsApp",
+        footerText: "Arusha, Tanzania · Delivery ndani ya Arusha tu · Kunywa kwa uwajibikaji",
+        productOrder: "Agiza",
+        inStock: "Inapatikana"
+      }
+    };
+
+    const products = [
+      {
+        category: "whisky",
+        name: "Johnnie Walker Red Label",
+        desc_en: "Popular blended Scotch whisky for parties and gifting.",
+        desc_sw: "Whisky maarufu kwa sherehe na zawadi.",
+        price: "TZS 45,000",
+        image: "https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "whisky",
+        name: "Jameson Irish Whiskey",
+        desc_en: "Smooth Irish whiskey for neat drinking or cocktails.",
+        desc_sw: "Whiskey laini ya Ireland kwa kunywa au kuchanganya cocktails.",
+        price: "TZS 55,000",
+        image: "https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "whisky",
+        name: "Jack Daniel's Old No. 7",
+        desc_en: "Classic Tennessee whiskey. Confirm stock by WhatsApp.",
+        desc_sw: "Whiskey maarufu ya Tennessee. Thibitisha stock kwa WhatsApp.",
+        price: "TZS 65,000",
+        image: "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "beer",
+        name: "Kilimanjaro Lager Crate",
+        desc_en: "Local favourite beer. Good for events and gatherings.",
+        desc_sw: "Bia pendwa ya Tanzania, nzuri kwa matukio na mikusanyiko.",
+        price: "TZS 38,000",
+        image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "beer",
+        name: "Serengeti Premium Lager",
+        desc_en: "Available as bottles or crate depending on stock.",
+        desc_sw: "Inapatikana kwa chupa au kreti kulingana na stock.",
+        price: "From TZS 3,500",
+        image: "https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "beer",
+        name: "Safari Lager",
+        desc_en: "Easy local beer choice for casual orders.",
+        desc_sw: "Bia ya kawaida kwa oda rahisi.",
+        price: "From TZS 3,500",
+        image: "https://images.unsplash.com/photo-1618885472179-5e474019f2a9?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "wine",
+        name: "Red Wine Selection",
+        desc_en: "Dry and semi-sweet red wine options.",
+        desc_sw: "Chaguo za red wine dry na semi-sweet.",
+        price: "From TZS 25,000",
+        image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "wine",
+        name: "White Wine Selection",
+        desc_en: "Best served chilled. Confirm current brands by WhatsApp.",
+        desc_sw: "Nzuri ikiwa baridi. Thibitisha brand zilizopo kwa WhatsApp.",
+        price: "From TZS 28,000",
+        image: "https://images.unsplash.com/photo-1558001373-7b93ee48ffa0?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "wine",
+        name: "Sparkling Wine",
+        desc_en: "For celebrations, gifts and special nights.",
+        desc_sw: "Kwa sherehe, zawadi na usiku maalum.",
+        price: "From TZS 35,000",
+        image: "https://images.unsplash.com/photo-1547595628-c61a29f496f0?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "spirits",
+        name: "Konyagi",
+        desc_en: "Popular Tanzanian spirit. Ask for available bottle sizes.",
+        desc_sw: "Spirit maarufu Tanzania. Uliza size zilizopo.",
+        price: "Ask Price",
+        image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "spirits",
+        name: "Vodka Selection",
+        desc_en: "Local and imported vodka options.",
+        desc_sw: "Vodka za ndani na nje kulingana na stock.",
+        price: "From TZS 30,000",
+        image: "https://images.unsplash.com/photo-1563223771-375783ee91ad?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        category: "spirits",
+        name: "Gin Selection",
+        desc_en: "For tonic, cocktails and events.",
+        desc_sw: "Kwa tonic, cocktails na matukio.",
+        price: "From TZS 32,000",
+        image: "https://images.unsplash.com/photo-1605270012917-bf157c5a9541?auto=format&fit=crop&w=900&q=80"
+      }
+    ];
+
+    let currentLang = localStorage.getItem("arusha_liquor_lang") || "en";
+    let currentFilter = "all";
+
+    function encodeMessage(message) {
+      return encodeURIComponent(message);
+    }
+
+    function whatsappUrl(message) {
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeMessage(message)}`;
+    }
+
+    function generalMessage() {
+      if (currentLang === "sw") {
+        return "Habari Arusha Liquor Express, ningependa kuweka oda. Tafadhali nitumieni bidhaa zilizopo na bei. Nafahamu kitambulisho kinahitajika wakati wa delivery.";
+      }
+      return "Hello Arusha Liquor Express, I would like to place an order. Please send me today’s available products and prices. I understand ID is required at delivery.";
+    }
+
+    function productMessage(product) {
+      if (currentLang === "sw") {
+        return `Habari Arusha Liquor Express,\n\nNingependa kuagiza: ${product.name}\nBei: ${product.price}\nEneo la delivery Arusha:\nMalipo: Cash / M-Pesa / Tigo Pesa / Airtel Money\nNafahamu kitambulisho kinahitajika wakati wa delivery.`;
+      }
+      return `Hello Arusha Liquor Express,\n\nI want to order: ${product.name}\nPrice: ${product.price}\nDelivery location in Arusha:\nPayment: Cash / M-Pesa / Tigo Pesa / Airtel Money\nI understand ID is required at delivery.`;
+    }
+
+    function categoryLabel(category) {
+      const labels = {
+        en: { whisky: "Whisky", beer: "Beer", wine: "Wine", spirits: "Local Spirits" },
+        sw: { whisky: "Whisky", beer: "Bia", wine: "Wine", spirits: "Spirits za Ndani" }
+      };
+      return labels[currentLang][category] || category;
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = "";
+
+      products
+        .filter(p => currentFilter === "all" || p.category === currentFilter)
+        .forEach((product) => {
+          const desc = currentLang === "sw" ? product.desc_sw : product.desc_en;
+          const card = document.createElement("article");
+          card.className = "product";
+          card.dataset.category = product.category;
+          card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <div class="product-body">
+              <div class="tag">${categoryLabel(product.category)}</div>
+              <h3>${product.name}</h3>
+              <p>${desc}</p>
+              <div class="price-row">
+                <div class="price">${product.price}</div>
+                <div class="stock">${translations[currentLang].inStock}</div>
+              </div>
+              <a class="btn btn-whatsapp" href="${whatsappUrl(productMessage(product))}" target="_blank" rel="noopener">
+                ${translations[currentLang].productOrder} ${product.name}
+              </a>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem("arusha_liquor_lang", lang);
+      document.documentElement.lang = lang === "sw" ? "sw" : "en";
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+      document.getElementById("btn-sw").classList.toggle("active", lang === "sw");
+
+      updateWhatsAppLinks();
+      renderProducts();
+    }
+
+    function updateWhatsAppLinks() {
+      const url = whatsappUrl(generalMessage());
+      document.getElementById("heroWhatsApp").href = url;
+      document.getElementById("floatWhatsApp").href = url;
+      document.getElementById("footerWhatsApp").href = url;
+    }
+
+    function filterProducts(category) {
+      currentFilter = category;
+      document.querySelectorAll(".filter").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.filter === category);
+      });
+      renderProducts();
+    }
+
+    function enterSite() {
+      localStorage.setItem("arusha_liquor_age_ok", "yes");
+      document.getElementById("ageGate").style.display = "none";
+      document.body.classList.remove("locked");
+    }
+
+    function leaveSite() {
+      window.location.href = "https://www.google.com";
+    }
+
+    function initAgeGate() {
+      const ok = localStorage.getItem("arusha_liquor_age_ok");
+      if (ok === "yes") {
+        document.getElementById("ageGate").style.display = "none";
+        document.body.classList.remove("locked");
+      } else {
+        document.getElementById("ageGate").style.display = "flex";
+        document.body.classList.add("locked");
+      }
+    }
+
+    initAgeGate();
+    setLang(currentLang);
+  </script>
+</body>
+</html>
