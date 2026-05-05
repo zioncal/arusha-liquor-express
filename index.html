@@ -428,6 +428,17 @@
       .info-grid { grid-template-columns: 1fr; }
       .nav-links a { display: none; }
     }
+    .logo-img {
+	  height: 40px;
+	  width: auto;
+	  border-radius: 8px;
+	  object-fit: contain;
+}
+@media (max-width: 600px) {
+  .logo-img {
+    height: 30px;
+  }
+}
 
     @media (max-width: 600px) {
       body { padding-bottom: 78px; }
@@ -475,9 +486,9 @@
   <div class="topbar">
     <nav class="nav">
       <a class="brand" href="#">
-        <span class="brand-mark">A</span>
-        <span>Arusha Liquor Express</span>
-      </a>
+	    <img src="images/logo.jpg" class="logo-img" alt="Logo">
+	    <span>Arusha Liquor Express</span>
+</a>
 
       <div class="nav-links">
         <a href="#products" data-i18n="navProducts">Products</a>
